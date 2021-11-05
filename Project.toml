@@ -1,0 +1,7 @@
+name = "SunAsAStar"
+uuid = "1bd1a468-645d-4223-8813-48273918c0e0"
+authors = ["Eric Ford", "Andrea Lin", "Shubham Kanodia"]
+version = "0.0.1"
+
+[compat]
+julia = "1.5"
