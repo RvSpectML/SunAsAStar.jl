@@ -1,0 +1,105 @@
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: C:\Users\eford\.julia\conda\3
+
+  added / updated specs:
+    - astroquery
+
+
+The following packages will be downloaded:
+
+    package                    |            build
+    ---------------------------|-----------------
+    astropy-4.3.1              |   py38h6f4d8f0_1         7.5 MB  conda-forge
+    astroquery-0.4.3           |     pyhd8ed1ab_0         3.7 MB  conda-forge
+    beautifulsoup4-4.10.0      |     pyha770c72_0          77 KB  conda-forge
+    ca-certificates-2021.10.8  |       h5b45459_0         176 KB  conda-forge
+    certifi-2021.10.8          |   py38haa244fe_1         145 KB  conda-forge
+    conda-4.10.3               |   py38haa244fe_3         3.1 MB  conda-forge
+    html5lib-1.1               |     pyh9f0ad1d_0          89 KB  conda-forge
+    keyring-21.2.1             |   py38haa244fe_0          65 KB  conda-forge
+    openssl-1.1.1l             |       h8ffe710_0         5.7 MB  conda-forge
+    pyerfa-2.0.0.1             |   py38h6f4d8f0_0         457 KB  conda-forge
+    python-mimeparse-1.6.0     |             py_1           7 KB  conda-forge
+    python_abi-3.8             |           2_cp38           4 KB  conda-forge
+    pyvo-1.1                   |     pyhd8ed1ab_1         692 KB  conda-forge
+    pywin32-ctypes-0.2.0       |py38haa244fe_1004          39 KB  conda-forge
+    soupsieve-2.3              |     pyhd8ed1ab_0          33 KB  conda-forge
+    ------------------------------------------------------------
+                                           Total:        21.7 MB
+
+The following NEW packages will be INSTALLED:
+
+  astropy            conda-forge/win-64::astropy-4.3.1-py38h6f4d8f0_1
+  astroquery         conda-forge/noarch::astroquery-0.4.3-pyhd8ed1ab_0
+  beautifulsoup4     conda-forge/noarch::beautifulsoup4-4.10.0-pyha770c72_0
+  html5lib           conda-forge/noarch::html5lib-1.1-pyh9f0ad1d_0
+  keyring            conda-forge/win-64::keyring-21.2.1-py38haa244fe_0
+  pyerfa             conda-forge/win-64::pyerfa-2.0.0.1-py38h6f4d8f0_0
+  python-mimeparse   conda-forge/noarch::python-mimeparse-1.6.0-py_1
+  python_abi         conda-forge/win-64::python_abi-3.8-2_cp38
+  pyvo               conda-forge/noarch::pyvo-1.1-pyhd8ed1ab_1
+  pywin32-ctypes     conda-forge/win-64::pywin32-ctypes-0.2.0-py38haa244fe_1004
+  soupsieve          conda-forge/noarch::soupsieve-2.3-pyhd8ed1ab_0
+
+The following packages will be UPDATED:
+
+  certifi            pkgs/main::certifi-2021.10.8-py38haa9~ --> conda-forge::certifi-2021.10.8-py38haa244fe_1
+  conda              pkgs/main::conda-4.10.3-py38haa95532_0 --> conda-forge::conda-4.10.3-py38haa244fe_3
+
+The following packages will be SUPERSEDED by a higher-priority channel:
+
+  ca-certificates    pkgs/main::ca-certificates-2021.10.26~ --> conda-forge::ca-certificates-2021.10.8-h5b45459_0
+  openssl              pkgs/main::openssl-1.1.1l-h2bbff1b_0 --> conda-forge::openssl-1.1.1l-h8ffe710_0
+
+
+
+Downloading and Extracting Packages
+pywin32-ctypes-0.2.0 | 39 KB     |            |   0% pywin32-ctypes-0.2.0 | 39 KB     | ####       |  41% pywin32-ctypes-0.2.0 | 39 KB     | ########## | 100% pywin32-ctypes-0.2.0 | 39 KB     | ########## | 100% 
+soupsieve-2.3        | 33 KB     |            |   0% soupsieve-2.3        | 33 KB     | ########## | 100% soupsieve-2.3        | 33 KB     | ########## | 100% 
+ca-certificates-2021 | 176 KB    |            |   0% ca-certificates-2021 | 176 KB    | ########## | 100% ca-certificates-2021 | 176 KB    | ########## | 100% 
+astroquery-0.4.3     | 3.7 MB    |            |   0% astroquery-0.4.3     | 3.7 MB    |            |   0% astroquery-0.4.3     | 3.7 MB    | ###        |  31% astroquery-0.4.3     | 3.7 MB    | #######6   |  77% astroquery-0.4.3     | 3.7 MB    | ########## | 100% 
+openssl-1.1.1l       | 5.7 MB    |            |   0% openssl-1.1.1l       | 5.7 MB    | 7          |   8% openssl-1.1.1l       | 5.7 MB    | ###1       |  32% openssl-1.1.1l       | 5.7 MB    | #####7     |  58% openssl-1.1.1l       | 5.7 MB    | ########2  |  83% openssl-1.1.1l       | 5.7 MB    | ########## | 100% 
+python-mimeparse-1.6 | 7 KB      |            |   0% python-mimeparse-1.6 | 7 KB      | ########## | 100% python-mimeparse-1.6 | 7 KB      | ########## | 100% 
+pyerfa-2.0.0.1       | 457 KB    |            |   0% pyerfa-2.0.0.1       | 457 KB    | 3          |   3% pyerfa-2.0.0.1       | 457 KB    | ########## | 100% pyerfa-2.0.0.1       | 457 KB    | ########## | 100% 
+conda-4.10.3         | 3.1 MB    |            |   0% conda-4.10.3         | 3.1 MB    | #8         |  18% conda-4.10.3         | 3.1 MB    | ######5    |  65% conda-4.10.3         | 3.1 MB    | ########## | 100% conda-4.10.3         | 3.1 MB    | ########## | 100% 
+python_abi-3.8       | 4 KB      |            |   0% python_abi-3.8       | 4 KB      | ########## | 100% 
+astropy-4.3.1        | 7.5 MB    |            |   0% astropy-4.3.1        | 7.5 MB    |            |   0% astropy-4.3.1        | 7.5 MB    | ##         |  21% astropy-4.3.1        | 7.5 MB    | ###9       |  40% astropy-4.3.1        | 7.5 MB    | #####8     |  59% astropy-4.3.1        | 7.5 MB    | #######6   |  76% astropy-4.3.1        | 7.5 MB    | #########7 |  98% astropy-4.3.1        | 7.5 MB    | ########## | 100% 
+keyring-21.2.1       | 65 KB     |            |   0% keyring-21.2.1       | 65 KB     | ########## | 100% keyring-21.2.1       | 65 KB     | ########## | 100% 
+pyvo-1.1             | 692 KB    |            |   0% pyvo-1.1             | 692 KB    | ###9       |  39% pyvo-1.1             | 692 KB    | ########## | 100% pyvo-1.1             | 692 KB    | ########## | 100% 
+certifi-2021.10.8    | 145 KB    |            |   0% certifi-2021.10.8    | 145 KB    | ########## | 100% certifi-2021.10.8    | 145 KB    | ########## | 100% 
+html5lib-1.1         | 89 KB     |            |   0% html5lib-1.1         | 89 KB     | ########## | 100% html5lib-1.1         | 89 KB     | ########## | 100% 
+beautifulsoup4-4.10. | 77 KB     |            |   0% beautifulsoup4-4.10. | 77 KB     | ########## | 100% beautifulsoup4-4.10. | 77 KB     | ########## | 100% 
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+[ Info: Running `conda install -y -c conda-forge astroquery` in root environment
+ERROR: LoadError: LoadError: IOError: could not spawn `'C:\Users\eford\.julia\conda\3\pip' install barycorrpy`: no such file or directory (ENOENT)
+Stacktrace:
+  [1] _spawn_primitive(file::String, cmd::Cmd, stdio::Vector{Any})
+    @ Base .\process.jl:99
+  [2] #637
+    @ .\process.jl:112 [inlined]
+  [3] setup_stdios(f::Base.var"#637#638"{Cmd}, stdios::Vector{Any})
+    @ Base .\process.jl:196
+  [4] _spawn
+    @ .\process.jl:111 [inlined]
+  [5] run(::Cmd; wait::Bool)
+    @ Base .\process.jl:439
+  [6] run(::Cmd)
+    @ Base .\process.jl:438
+  [7] top-level scope
+    @ C:\Users\eford\.julia\dev\SunAsAStar\deps\pyimports.jl:11
+  [8] include(fname::String)
+    @ Base.MainInclude .\client.jl:444
+  [9] top-level scope
+    @ C:\Users\eford\.julia\dev\SunAsAStar\deps\build.jl:2
+ [10] include(fname::String)
+    @ Base.MainInclude .\client.jl:444
+ [11] top-level scope
+    @ none:5
+in expression starting at C:\Users\eford\.julia\dev\SunAsAStar\deps\pyimports.jl:11
+in expression starting at C:\Users\eford\.julia\dev\SunAsAStar\deps\build.jl:2
