@@ -6,6 +6,7 @@ pipcmd = joinpath(Conda.PYTHONDIR,"pip")
 
 #Conda.add("astroquery.jplhorizons")
 Conda.add("astroquery", channel="conda-forge")
+Conda.add("astroquery.jplhorizons", channel="conda-forge")
 #run(`$pipcmd install --pre astroquery`)
 
 run(`$pipcmd install barycorrpy`)
@@ -18,4 +19,3 @@ Conda.add("scipy")
 #Conda.add("scipy.spatial.transform")
 
 #run(`$pipcmd install pyneid`)
-
