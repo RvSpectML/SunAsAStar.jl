@@ -16,7 +16,7 @@ Manifest.toml
 # Large files to be downloaded outside of git
 /data/solar_line_list_espresso.csv
 /data/large
-/data/horizons
+/data/horizons/*.csv
 
 # Output files
 /output*
