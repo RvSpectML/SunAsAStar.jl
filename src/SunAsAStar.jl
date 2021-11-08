@@ -24,4 +24,8 @@ export calc_Δfwhm_solar_rotation
 using CSV
 export CSV
 
+# Functions to precompile
+precompile(SolarRotation.calc_Δfwhm_solar_rotation, (Float64,) )
+precompile(DifferentialExtinction.calc_Δv_diff_extinction, (Float64,) )
+
 end
