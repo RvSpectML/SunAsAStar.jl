@@ -6,8 +6,8 @@ pipcmd = joinpath(Conda.PYTHONDIR,"pip")
 
 #Conda.add("astroquery.jplhorizons")
 Conda.add("astroquery", channel="conda-forge")
-Conda.add("astroquery.jplhorizons", channel="conda-forge")
 #run(`$pipcmd install --pre astroquery`)
+#Conda.add("astroquery.jplhorizons", channel="conda-forge")
 
 run(`$pipcmd install barycorrpy`)
 
