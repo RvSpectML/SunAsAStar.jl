@@ -107,13 +107,15 @@ function CalculateFWHMDifference_SolarRotation_from_loc_Ecliptic(jd::Real; loc::
 	EclipticEpsilon = 23.44
 
 	# Need to perform Extrinsic Euler Rotations to rotate from equatorial to ecliptic
-	#REcliptic = R.from_euler("X",  -EclipticEpsilon, degrees=True).as_matrix()
-	REcliptic = SciPyRotation.from_euler("X",  -EclipticEpsilon, degrees=true).as_dcm()
+	#REcliptic = R.from_euler("X",  -EclipticEpsilon, degrees=true).as_matrix()
+	REcliptic = SciPyRotation.from_euler("X",  -EclipticEpsilon, degrees=true).as_matrix()
+	#REcliptic = SciPyRotation.from_euler("X",  -EclipticEpsilon, degrees=true).as_dcm()
 	# may need to change to .as_matrix() with SciPy 1.4?
 
 	# Intrinsic rotation to go from solar axis to ecliptic
 	#RObliquity = R.from_euler("xz",  [SolarInclination, SolarLongitude], degrees=true).as_matrix()
-	RObliquity = SciPyRotation.from_euler("xz",  [SolarInclination, SolarLongitude], degrees=true).as_dcm()
+	RObliquity = SciPyRotation.from_euler("xz",  [SolarInclination, SolarLongitude], degrees=true).as_matrix()
+	#RObliquity = SciPyRotation.from_euler("xz",  [SolarInclination, SolarLongitude], degrees=true).as_dcm()
 
 	################################
 	####ROTATED COORD VECTORS ####
@@ -462,8 +464,8 @@ Calculate the difference between the Observed Solar FWHM and Sidereal Solar FWHM
 function CalculateFWHMDifference_SolarRotation_from_long_lat_alt(jd::Union{Real,Vector{<:Real}}; long::Real, lat::Real, alt::Real )
 #function CalculateFWHMDifference_SolarRotation_from_long_lat_alt(jd::Real; long::Real, lat::Real, alt::Real )
 	loc = AstropyCoordinates.EarthLocation.from_geodetic(long, lat, height=alt)
-	#delta = CalculateFWHMDifference_SolarRotation_from_loc_Equatorial(jd, loc=loc)
-	delta = CalculateFWHMDifference_SolarRotation_from_loc_Ecliptic(jd, loc=loc)
+	delta = CalculateFWHMDifference_SolarRotation_from_loc_Equatorial(jd, loc=loc)
+	#delta = CalculateFWHMDifference_SolarRotation_from_loc_Ecliptic(jd, loc=loc)
 	return delta
 end
 

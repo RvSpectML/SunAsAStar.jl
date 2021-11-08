@@ -22,7 +22,10 @@ end
    HARPSN_df.Delta = HARPSN_df.FWHMobs.^2 .- HARPSN_df.FWHMsid.^2
 
    # Test scalar
-   @test SolarRotation.CalculateFWHMDifference_SolarRotation_from_obs(jd[1], obs=:HARPSN) ≈ -0.5967647214702758
+   # Equatorial
+   @test SolarRotation.CalculateFWHMDifference_SolarRotation_from_obs(jd[1], obs=:HARPSN) ≈ -0.5969944883008037
+   # Ecliptic
+   # @test SolarRotation.CalculateFWHMDifference_SolarRotation_from_obs(jd[1], obs=:HARPSN) ≈ -0.5967647214702758
 
    # Test on array of times
    Delta = SolarRotation.CalculateFWHMDifference_SolarRotation_from_obs.(jd[1:50:end],obs=:HARPSN)
