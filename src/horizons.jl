@@ -1,3 +1,4 @@
+__precompile__() # this module is safe to precompile
 """
    DifferentialExtinction
    Original Python code (solar_diffex.py) by Andrea Lin
@@ -5,7 +6,6 @@
    Based on Collier-Cameron et al. (2019) MNRAS 487, 1082.  doi:10.1093/mnras/stz1215
    See also Astronomical Algorithms (Meeus, 1991) p151 & p178
 """
-__precompile__() # this module is safe to precompile
 module Horizons
 
 using PyCall
@@ -19,6 +19,7 @@ const JplHorizons = PyNULL()
 
 function __init__()
 	copy!(JplHorizons , pyimport("astroquery.jplhorizons") )
+	@assert JplHorizons != PyNULL()
 end
 
 

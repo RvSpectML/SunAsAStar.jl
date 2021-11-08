@@ -1,4 +1,4 @@
-#__precompile__() # this module is safe to precompile
+__precompile__() # this module is safe to precompile
 module SolarRotation
 using PyCall
 
@@ -11,11 +11,9 @@ using DataFrames
 const SciPySpatialTransform = PyNULL()
 
 function __init__()
-	#copy!(AstropyCoordinates , pyimport("astropy.coordinates") )
-	#copy!(AstropyTime , pyimport("astropy.time") )
-	#copy!(Barycorrpy , pyimport("barycorrpy") )
 	# Uncomment below and remove pyimport from CalculateFWHMDifference_SolarRotation_from_loc_Ecliptic if start using it
 	copy!(SciPySpatialTransform , pyimport("scipy.spatial.transform") )
+	@assert SciPySpatialTransform != PyNULL()
 end
 
 

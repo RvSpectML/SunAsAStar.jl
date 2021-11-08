@@ -1,4 +1,4 @@
-#__precompile__() # this module is safe to precompile
+__precompile__() # this module is safe to precompile
 module SunAsAStar
 
 include("common.jl")

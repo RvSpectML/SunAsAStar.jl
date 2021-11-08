@@ -1,5 +1,3 @@
-#__precompile__() # this module is safe to precompile
-
 # Intiailize Python packages
 using PyCall
 const AstropyCoordinates = PyNULL()
@@ -10,6 +8,9 @@ function __init__()
 	copy!(AstropyCoordinates , pyimport("astropy.coordinates") )
 	copy!(AstropyTime , pyimport("astropy.time") )
 	copy!(Barycorrpy , pyimport("barycorrpy") )
+	@assert AstropyCoordinates != PyNULL()
+	@assert AstropyTime != PyNULL()
+	@assert Barycorrpy != PyNULL()
 end
 
 # Constants

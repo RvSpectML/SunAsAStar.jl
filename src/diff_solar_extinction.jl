@@ -1,3 +1,4 @@
+__precompile__() # this module is safe to precompile
 """
    DifferentialExtinction
    Original Python code (solar_diffex.py) by Andrea Lin
@@ -5,48 +6,14 @@
    Based on Collier-Cameron et al. (2019) MNRAS 487, 1082.  doi:10.1093/mnras/stz1215
    See also Astronomical Algorithms (Meeus, 1991) p151 & p178
 """
-#__precompile__() # this module is safe to precompile
 module DifferentialExtinction
-using PyCall
 using ..SunAsAStar
-#using ..SunAsAStar: Horizons # Barycorrpy
 
 using Dates
 using DataFrames, CSV
 
-# Import Python package for querying JPL Horizons database
-#=
-const JplHorizons = PyNULL()
 
-function __init__()
-	copy!(JplHorizons , pyimport("astroquery.jplhorizons") )
-end
-=#
-
-#import ..SunAsAStar
 import ..SunAsAStar: AU, R_sun, valid_obs
-#import ..SunAsAStar.SolarRotation
-
-
-#=
-""" get_obs_loc(obs::Symbol)
- Returns a Dict with long & lat (degrees) and elevation (km)
- Warning: Currently only has info for :WIYN and :HARPSN.
-"""
-function get_obs_loc(obs::Symbol)
-	@assert obs ∈ valid_obs
-	if obs == :LAPALMA || obs == :HARPSN
-		loc = Dict("lon"=> -17.88905, "lat"=> 28.754, "elevation"=> 2.3872)
-	elseif obs == :WIYN || obs == :NEID
-		loc = Dict("lon"=> -111.600562, "lat"=> 31.958092, "elevation"=> 2.091)
-	elseif obs == :EXPRES || obs == :DCT
-		loc = Dict("lon"=> -111.421944, "lat"=> 34.744444, "elevation"=> 2.219)
-	else
-		@error("Don't have coordinates for obs = " * string(obs))
-	end
-	return loc
-end
-=#
 
 f_z(alt) = π/2-alt
 
@@ -177,7 +144,7 @@ function calc_Δv_diff_extinction_astropy(epochs::Vector{Float64}, obs::Symbol, 
 	ha = sol.lst .- sol.ra./15
 	idx_visible = 0 .< sol.airmass .<= max_airmass
 	horizons = Horizons.get_horizons_output.(epochs[idx_visible],obs=obs)
-	delta = get_earth_sun_dist.(epochs[idx_visible], obs=obs)
+	delta = get_earth_sun_dist(epochs[idx_visible], obs=obs)  # CHECK:  OK TO REMOVE DOT?
 	#delta = sun.sol_dist_au
 	loc = get_obs_loc(obs)
 	#println(" jd = ", epochs, " delta_h = ", horizons.sol_dist_au, " delta_ap = ", delta)
@@ -185,26 +152,6 @@ function calc_Δv_diff_extinction_astropy(epochs::Vector{Float64}, obs::Symbol, 
 	delta_vr = diff_extinct_corr.(epochs[idx_visible], sol.alt[idx_visible], ha[idx_visible], sol.ra[idx_visible], horizons.sol_npole_ang, horizons.sol_dist_au.*AU, loc["lat"]) #eph["NPole_ang"], eph["delta"])
 	return delta_vr
 end
-
-#=
-function calc_Δv_diff_extinction_astropy(epochs::Dict, obs::Symbol, max_airmass::Float64 = 10.0, verbose::Bool = false)
-	@assert haskey(epochs,"start")
-	@assert haskey(epochs,"stop")
-	@assert haskey(epochs,"step")
-	@assert 1 < max_airmass <= 10.0
-	sol = SolarRotation.get_solar_info(epochs, obs=obs)
-	ha = sol.lst .- sol.ra./15
-	idx_visible = 0 .< sol.airmass .<= max_airmass
-	horizons = get_horizons_output(epochs,obs)
-	delta = SolarRotation.get_earth_sun_dist(epochs, obs=obs)
-	loc = get_obs_loc(obs)
-	#println(" jd = ", epochs, " delta_h = ", horizons.sol_dist_au, " delta_ap = ", delta)
-	#println(" diff = ", horizons.sol_dist_au.-delta)
-	# Need to fix
-	delta_vr = diff_extinct_corr.(epochs[idx_visible], sol.alt[idx_visible], ha[idx_visible], sol.ra[idx_visible], horizons.sol_npole_ang, horizons.sol_dist_au.*AU, loc["lat"]) #eph["NPole_ang"], eph["delta"])
-	return delta_vr
-end
-=#
 
 function compare_Horizons_Astropy(epochs::Vector{Float64}, obs::Symbol; max_airmass::Float64 = 10.0, verbose::Bool = false)
 	if verbose println("# compare_Horizons_Astropy: ") end
