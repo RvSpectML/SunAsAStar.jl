@@ -22,6 +22,7 @@ Manifest.toml
 /output*
 
 # Temporary files
+deps/build.log
 tmp.jl
 /examples*/output
 /plots
