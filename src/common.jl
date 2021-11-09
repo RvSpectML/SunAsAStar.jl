@@ -85,7 +85,7 @@ function get_earth_sun_dist(jd::Union{Real,Vector{<:Real}}; obs::Symbol)
 	r_pint, v_pint = Barycorrpy.PINT_erfautils.gcrs_posvel_from_itrf(loc, JDUTC, JDTT) # [m]
 	diff_vector = (earth_geo + r_pint') -solar_ephem #[m]
 	dist = vec(sqrt.(sum(diff_vector.^2,dims=1)))
-	AU = 149597870.7  # km
+	#AU = 149597870.7  # km
 	dist = dist/(AU*1000)
 	if typeof(jd) <:Real
 		return first(dist)
@@ -105,6 +105,7 @@ function get_solar_info(jd::Union{Real,Vector{<:Real}}; obs::Symbol)
 	Alt, Az = SolarAltAz.alt, SolarAltAz.az
 	Airmass = SolarAltAz.secz
 	LST = TimeObs.sidereal_time("mean")
+	ha = get_solar_hour_angle(jd, obs=obs)
 
 	ephemeris = "de430"
 	JDUTC = AstropyTime.Time(jd , format="jd", scale="utc")
@@ -121,10 +122,10 @@ function get_solar_info(jd::Union{Real,Vector{<:Real}}; obs::Symbol)
 	dist = dist./(AU*1000)
 
 	if typeof(jd) <: Real
-		result = Dict(:ra=>first(RA), :dec=>first(Dec), :alt=>first(Alt), :az=>first(Az), :airmass=>first(Airmass), :lst=>first(LST), :sol_dist_au=>first(dist) )
+		result = Dict(:ra=>first(RA), :dec=>first(Dec), :alt=>first(Alt), :az=>first(Az), :airmass=>first(Airmass), :lst=>first(LST), :hour_angle=>first(ha), :sol_dist_au=>first(dist) )
 	else
 		#result = DataFrame(:ra=>RA, :dec=>Dec, :alt=>Alt, :az=>Az, :airmass=>Airmass, :lst=>LST, :sol_dist_au=>dist )
-		result = (;ra=RA, dec=Dec, alt=Alt, az=Az, airmass=Airmass, lst=LST, sol_dist_au=dist )
+		result = (;ra=RA, dec=Dec, alt=Alt, az=Az, airmass=Airmass, lst=LST, hour_angle=ha, sol_dist_au=dist )
 	end
 	return result
 end
