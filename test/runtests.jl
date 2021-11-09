@@ -25,9 +25,11 @@ using Dates
     @testset "Differential extinction" begin
         @test_nowarn DifferentialExtinction.calc_Δv_diff_extinction(t, obs=:WIYN)
         tlist = collect(t .+ range(0.0,stop=1.0,step=0.05))
-        output = DifferentialExtinction.compare_Horizons_Astropy(tlist, :WIYN, max_airmass=4.0)
         # TODO: Improve agreement.  Likely due to astropy breaking refraction=true option
-        @test maximum(abs.(output.delta_vr_old .- output.delta_vr_new)) < 0.01
+        @test begin
+            output = DifferentialExtinction.compare_Horizons_Astropy(tlist, :WIYN, max_airmass=4.0)
+            maximum(abs.(output.delta_vr_old .- output.delta_vr_new)) < 0.01
+        end
     end
 
     include("test_solar_rotation.jl")
