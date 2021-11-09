@@ -43,7 +43,7 @@ function query_horizons(;epochs::Union{Vector{Float64},Dict}, obs::Symbol, max_a
 end
 
 
-function cache_horizons_output_year(year::Int64, obs::Symbol)
+function cache_horizons_output_year(year::Int64, obs::Symbol; verbose::Bool = false)
 	fn = "horizons_" * string(obs) * "_" * string(year) * ".csv"
 	filename = joinpath(dirname(pathof(SunAsAStar)),"..","data","horizons",fn)
 	if isfile(filename) && fielsize(filename) > 0
@@ -54,19 +54,19 @@ function cache_horizons_output_year(year::Int64, obs::Symbol)
 	epoch_stop  = string(year+1) * "-01-01 00:00:00"
 	step = "6h"
 	epochs = Dict("start"=>epoch_start, "stop"=>epoch_stop, "step"=>step)
-	eph = query_horizons(epochs=epochs, obs=obs, max_airmass=10.0, verbose=true)
+	eph = query_horizons(epochs=epochs, obs=obs, max_airmass=10.0, verbose=verbose)
 	df = DataFrame(:jd=>eph.columns["datetime_jd"], :sol_npole_ang=>eph.columns["NPole_ang"], :sol_dist_au=>eph.columns["delta"])
 	CSV.write(filename,df)
 	return df
 end
 
-function read_horizons_output(jd::Union{Float64,Vector{Float64}}, obs::Symbol)
+function read_horizons_output(jd::Union{Float64,Vector{Float64}}, obs::Symbol; verbose::Bool = false)
 	#@assert obs ∈ valid_obs
 	years = unique(year.(Dates.julian2datetime.(jd)))
 	@assert length(years) >= 1
 	cache = Dict{Int64,Any}()
 	for year in years
-		cache[year] = read_horizons_output_year(year, obs=obs)
+		cache[year] = read_horizons_output_year(year, obs=obs, verbose=verbose)
 		#=
 		fn = "horizons_" * string(obs) * "_" * string(year) * ".csv"
 		filename = joinpath(dirname(pathof(SunAsAStar)),"..","data","horizons",fn)
@@ -90,21 +90,21 @@ function read_horizons_output(jd::Union{Float64,Vector{Float64}}, obs::Symbol)
 	end
 end
 
-function read_horizons_output_year(year::Integer ; obs::Symbol)
+function read_horizons_output_year(year::Integer ; obs::Symbol, verbose::Bool = false)
 	fn = "horizons_" * string(obs) * "_" * string(year) * ".csv"
 	filename = joinpath(dirname(pathof(SunAsAStar)),"..","data","horizons",fn)
 	if isfile(filename) && filesize(filename) > 0
 		cache = CSV.read(filename, DataFrame)
 	else
-		cache = cache_horizons_output_year(year, obs)
+		cache = cache_horizons_output_year(year, obs, verbose=verbose)
 	end
 	cache.sol_npole_ang[cache.sol_npole_ang .> 180] .-= 360
 	return cache
 	#first(keys(cache))
 end
 
-function get_horizons_output(jd::Float64; obs::Symbol)
-  df = read_horizons_output(jd, obs)
+function get_horizons_output(jd::Float64; obs::Symbol, verbose::Bool = false)
+  df = read_horizons_output(jd, obs, verbose=verbose)
   idxlo = searchsortedlast(df.jd, jd)
   @assert 1 <= idxlo < size(df,1)
   idxhi = idxlo + 1
