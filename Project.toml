@@ -1,7 +1,7 @@
 name = "SunAsAStar"
 uuid = "1bd1a468-645d-4223-8813-48273918c0e0"
 authors = ["Eric Ford", "Andrea Lin", "Shubham Kanodia"]
-version = "0.1.1"
+version = "0.1.2"
 
 [deps]
 CSV = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
