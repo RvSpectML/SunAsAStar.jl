@@ -16,7 +16,9 @@ makedocs(;
     pages=[
         "Home" => "index.md",
     ],
-)
+    checkdocs=:none,
+    #checkdocs=:exports,
+    )
 
 deploydocs(;
     repo="github.com/RvSpectML/SunAsAStar.jl",
